@@ -1,0 +1,182 @@
+
+Claudeが応答中です
+1791386411828_image.png
+メインページの画像だけ表示されない
+
+画像は読み込まれているけど真っ黒ですね。object-fit: contain にしているので、背景が黒いまま画像が小さく表示されているか、ファイル名の問題です。
+
+まず確認してください：
+
+dir E:\99_ダウンロード\hisakann-site-v3\hisakann-site\public\images
+結果を教えてもらえれば原因を特定できます！
+
+PS E:\99_ダウンロード\hisakann-site-v3\hisakann-site> dir E:\99_ダウンロード\hisakann-site-v3\hisakann-site\public\images
+
+    ディレクトリ: E:\99_ダウンロード\hisakann-site-v3\hisakann-site\public\images
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2026/06/30      1:53        1644358 botan.jpg
+-a----        2026/07/12     15:07        2105218 hasuflower.jpg
+-a----        2026/07/12     15:12        1389589 kotyouran.jpg
+-a----        2026/07/12     15:07        2105218 lotus.jpg
+-a----        2026/07/12     15:12        1389589 orchid.jpg
+-a----        2026/06/30      1:53        1644358 peony.jpg
+-a----        2026/07/12     15:10         686630 plum.jpg
+-a----        2026/07/12     15:10         686630 umeflower.jpg
+
+わかりました！peony.jpg はあるのに画像が黒いのは、ファイルが実は botan.jpg という名前で先に入っていて、peony.jpg が正しく上書きされていない可能性があります。
+
+botan.jpg と peony.jpg のサイズが同じ（1644358）なので中身は同じファイルのはずです。
+
+原因は別にあって、ヒーロー画像が真っ黒な背景に対してcontainで小さく表示されているだけです。cover に戻せば解決します。
+
+PowerShellで実行してください：
+
+$env:PATH += ";E:\02_G\Git\cmd"
+cd E:\99_ダウンロード\hisakann-site-v3\hisakann-site
+次にこのコマンドで該当箇所を修正します：
+
+(Get-Content app\page.tsx) -replace "objectFit: 'contain' \} \} priority", "objectFit: 'cover' } } priority" | Set-Content app\page.tsx
+その後push：
+
+git add .
+git commit -m "fix: hero image cover"
+git push origin main
+試してみてください！
+
+ためしたけどだめっぽい
+
+直接ファイルを修正します。
+
+E:\99_ダウンロード\hisakann-site-v3\hisakann-site\app\page.tsx をメモ帳で開いて、
+
+検索：
+
+objectFit: 'contain' } } priority
+置換：
+
+objectFit: 'cover' } } priority
+に変えて保存してください。
+
+メモ帳の場合は Ctrl+H で置換ダイアログが開きます。
+
+保存できたらpushしてください：
+
+git add .
+git commit -m "fix: hero image cover"
+git push origin main
+
+'use client' import Image from 'next/image' import Link from 'next/link' import { useLang } from '@/components/LangProvider' import { t } from '@/lib/i18n' import { useEffect, useState } from 'react' import { supabase, Artwork } from '@/lib/supabase' export default function HomePage() {
+
+pasted
+
+見つからない
+
+ファイルの文字コードが壊れています（文字化けしている）。ファイルを丸ごと置き換えます。
+
+メモ帳で E:\99_ダウンロード\hisakann-site-v3\hisakann-site\app\page.tsx を開いて、中身を全部消して以下を貼り付けて保存してください。
+
+tsx
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useLang } from '@/components/LangProvider'
+import { t } from '@/lib/i18n'
+import { useEffect, useState } from 'react'
+import { supabase, Artwork } from '@/lib/supabase'
+
+export default function HomePage() {
+  const { lang } = useLang()
+  const [artworks, setArtworks] = useState<Artwork[]>([])
+
+  useEffect(() => {
+    supabase.from('artworks').select('*').order('display_order').limit(4)
+      .then(({ data }) => { if (data) setArtworks(data) })
+  }, [])
+
+  const placeholders = [
+    { id: '1', label: '青い胡蝶蘭', sub: 'Blue Orchid', src: '/images/orchid.jpg' },
+    { id: '2', label: '梅の花', sub: 'Plum Blossom', src: '/images/plum.jpg' },
+    { id: '3', label: '蓮の花', sub: 'Lotus', src: '/images/lotus.jpg' },
+    { id: '4', label: '大きな牡丹', sub: 'Peony', src: '/images/peony.jpg' },
+  ]
+
+  const items = artworks.length > 0
+    ? artworks.map(aw => ({ id: aw.id, label: lang === 'ja' ? aw.title_ja : aw.title_en, sub: lang === 'ja' ? aw.motif_ja : aw.motif_en, src: aw.image_url }))
+    : placeholders
+
+  return (
+    <>
+      {/* HERO */}
+      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 'calc(100vh - 60px)' }} className="hero-grid">
+        <div style={{ padding: '80px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: '0.5px solid var(--border)' }} className="hero-text-mobile">
+          <p className="eyebrow" style={{ marginBottom: 20 }}>{t.hero.eyebrow[lang]}</p>
+          <h1 style={{ fontSize: 'clamp(22px, 3vw, 40px)', fontWeight: 400, lineHeight: 1.4, marginBottom: 8, whiteSpace: 'pre-line' }}>{t.hero.h1[lang]}</h1>
+          <div className="gold-line" />
+          <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13, color: 'var(--text-sub)', lineHeight: 1.9, marginBottom: 36, maxWidth: 380 }}>{t.hero.sub[lang]}</p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Link href="/gallery" className="btn-dark">{t.hero.cta_gallery[lang]}</Link>
+            <Link href="/service" className="btn-outline">{t.hero.cta_service[lang]}</Link>
+          </div>
+        </div>
+        <div style={{ position: 'relative', background: '#1a1714', overflow: 'hidden', minHeight: 260 }} className="hero-img-mobile">
+          <Image src="/images/peony.jpg" alt="大きな牡丹" fill style={{ objectFit: 'cover' }} priority />
+          <div style={{ position: 'absolute', bottom: 16, left: 16, fontFamily: 'Hiragino Sans, sans-serif', fontSize: 9, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.12em', background: 'rgba(0,0,0,0.4)', padding: '3px 8px' }}>
+            大きな牡丹 · Watercolor / NULLEA
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY PREVIEW */}
+      <section style={{ padding: '64px 48px', maxWidth: 1200, margin: '0 auto' }} className="section-pad-mobile">
+        <p className="section-label">{t.gallery.title[lang]}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }} className="gallery-grid-mobile">
+          {items.map((item) => (
+            <Link key={item.id} href={`/gallery/${item.id}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', background: '#111', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', aspectRatio: '3/4' }}>
+                <Image src={item.src} alt={item.label} fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 12px 12px', background: 'linear-gradient(transparent, rgba(0,0,0,0.75))' }}>
+                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)' }}>{item.label}</p>
+                <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', fontFamily: 'sans-serif', letterSpacing: '0.08em' }}>{item.sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div style={{ marginTop: 24, textAlign: 'center' }}>
+          <Link href="/gallery" className="btn-outline">{t.gallery.view_all[lang]}</Link>
+        </div>
+      </section>
+
+      {/* SERVICE PREVIEW */}
+      <section style={{ background: 'var(--cream-2)', padding: '64px 48px' }} className="section-pad-mobile">
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <p className="section-label">{t.service.title[lang]}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }} className="service-grid-mobile">
+            {(['sales', 'order'] as const).map((key) => (
+              <div key={key} style={{ background: 'var(--cream)', border: '0.5px solid var(--border)', padding: '28px 24px' }}>
+                <p style={{ fontSize: 14, fontWeight: 400, color: 'var(--text)', marginBottom: 4 }}>{t.service[key].name[lang]}</p>
+                <div className="gold-line" />
+                <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 12, color: 'var(--text-sub)', lineHeight: 1.85 }}>{t.service[key].desc[lang]}</p>
+                <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10, color: 'var(--gold)', marginTop: 16, paddingTop: 12, borderTop: '0.5px solid var(--border)' }}>{t.service[key].price[lang]}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 24, textAlign: 'right' }}>
+            <Link href="/service" className="btn-outline">{lang === 'ja' ? 'サービス一覧を見る' : 'View all services'}</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* PROFILE TEASER */}
+      <section style={{ padding: '64px 48px', maxWidth: 1200, margin: '0 auto' }} className="section-pad-mobile">
+        <p className="section-label">{t.profile.title[lang]}</p>
+        <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start',
+
+
+
+
+Claude は AI であり、間違えることがあります。 回答は必ずご確認ください。
+
+
