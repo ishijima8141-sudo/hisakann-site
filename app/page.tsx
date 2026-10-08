@@ -17,7 +17,7 @@ export default function HomePage() {
 
   const placeholders = [
     { id: '1', label: '青い胡蝶蘭', sub: 'Blue Orchid', src: '/images/orchid.jpg' },
-    { id: '2', label: '梁E�E花', sub: 'Plum Blossom', src: '/images/plum.jpg' },
+    { id: '2', label: '梅の花', sub: 'Plum Blossom', src: '/images/plum.jpg' },
     { id: '3', label: '蓮の花', sub: 'Lotus', src: '/images/lotus.jpg' },
     { id: '4', label: '大きな牡丹', sub: 'Peony', src: '/images/peony.jpg' },
   ]
@@ -41,7 +41,7 @@ export default function HomePage() {
           </div>
         </div>
         <div style={{ position: 'relative', background: '#1a1714', overflow: 'hidden', minHeight: 260 }} className="hero-img-mobile">
-          <Image src="/images/peony.jpg" alt="大きな牡丹" fill style={{ objectFit: 'contain' }} priority />
+          <Image src="/images/peony.jpg" alt="大きな牡丹" fill style={{ objectFit: 'cover' }} priority />
           <div style={{ position: 'absolute', bottom: 16, left: 16, fontFamily: 'Hiragino Sans, sans-serif', fontSize: 9, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.12em', background: 'rgba(0,0,0,0.4)', padding: '3px 8px' }}>
             大きな牡丹 · Watercolor / NULLEA
           </div>
@@ -55,7 +55,7 @@ export default function HomePage() {
           {items.map((item) => (
             <Link key={item.id} href={`/gallery/${item.id}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', background: '#111', overflow: 'hidden' }}>
               <div style={{ position: 'relative', aspectRatio: '3/4' }}>
-                <Image src={item.src} alt={item.label} fill style={{ objectFit: 'contain' }} />
+                <Image src={item.src} alt={item.label} fill style={{ objectFit: 'cover' }} />
               </div>
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 12px 12px', background: 'linear-gradient(transparent, rgba(0,0,0,0.75))' }}>
                 <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)' }}>{item.label}</p>
@@ -94,7 +94,7 @@ export default function HomePage() {
         <p className="section-label">{t.profile.title[lang]}</p>
         <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start', flexWrap: 'wrap' }} className="profile-flex-mobile">
           <div style={{ width: 120, flexShrink: 0, position: 'relative', aspectRatio: '3/4', background: '#1a1714' }}>
-            <Image src="/images/profile.jpg" alt="ひさ�EめE fill style={{ objectFit: 'cover' }} />
+            <Image src="/images/profile.jpg" alt="ひさのり" fill style={{ objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1, minWidth: 260 }}>
             <p style={{ fontSize: 10, color: 'var(--gold)', fontFamily: 'Hiragino Sans, sans-serif', letterSpacing: '0.16em', marginBottom: 6 }}>{t.profile.brand}</p>
@@ -111,7 +111,7 @@ export default function HomePage() {
 
       {/* CTA */}
       <section style={{ background: 'var(--dark)', padding: '64px 48px', textAlign: 'center' }} className="section-pad-mobile">
-        <p className="eyebrow" style={{ color: 'var(--gold-light)', marginBottom: 20 }}>{lang === 'ja' ? 'お問ぁE��わせ' : 'Get in touch'}</p>
+        <p className="eyebrow" style={{ color: 'var(--gold-light)', marginBottom: 20 }}>{lang === 'ja' ? 'お問い合わせ' : 'Get in touch'}</p>
         <h2 style={{ fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: 'var(--cream)', marginBottom: 12 }}>{t.cta.h2[lang]}</h2>
         <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.55)', marginBottom: 32, lineHeight: 1.8 }}>{t.cta.sub[lang]}</p>
         <Link href="/contact" style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 11, letterSpacing: '0.12em', padding: '12px 32px', background: 'var(--gold)', color: 'var(--dark)', textDecoration: 'none', display: 'inline-block' }}>{t.cta.btn[lang]}</Link>
