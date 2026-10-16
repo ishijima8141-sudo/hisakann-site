@@ -54,7 +54,8 @@ export default function LPPage() {
         <div style={{
           padding: '80px 56px',
           display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          borderLeft: '0.5px solid var(--lp-border)'
+          background: '#343D32',
+          borderLeft: '0.5px solid rgba(173,150,99,0.3)'
         }} className="hero-text-mobile">
           <p style={{
             fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
@@ -62,14 +63,15 @@ export default function LPPage() {
           }}>NULLEA — WATERCOLOR ART</p>
           <h1 style={{
             fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400,
-            lineHeight: 1.25, marginBottom: 12, letterSpacing: '0.04em'
+            lineHeight: 1.25, marginBottom: 12, letterSpacing: '0.04em',
+            color: '#F1EBDD'
           }}>
             アートの贈り物。
           </h1>
           <div style={{ width: 32, height: 1, background: 'var(--lp-gold)', margin: '16px 0 20px' }} />
           <p style={{
             fontFamily: 'Hiragino Sans, sans-serif', fontSize: 14,
-            color: 'var(--lp-sub)', lineHeight: 2, marginBottom: 40, maxWidth: 360
+            color: 'rgba(241,235,221,0.75)', lineHeight: 2, marginBottom: 40, maxWidth: 360
           }}>
             縁起の良いアートで日常に彩りを。<br />
             玄関やオフィスに飾るだけで、<br />
@@ -94,8 +96,8 @@ export default function LPPage() {
               href="#contact-form"
               style={{
                 display: 'block', textAlign: 'center',
-                padding: '14px 24px', border: '0.5px solid var(--lp-border)',
-                color: '#343D32', textDecoration: 'none',
+                padding: '14px 24px', border: '0.5px solid rgba(241,235,221,0.3)',
+                color: '#F1EBDD', textDecoration: 'none',
                 fontSize: 13, fontFamily: 'Hiragino Sans, sans-serif',
                 letterSpacing: '0.08em'
               }}
