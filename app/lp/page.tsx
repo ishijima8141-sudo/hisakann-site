@@ -22,14 +22,26 @@ export default function LPPage() {
   }
 
   return (
-    <div style={{ fontFamily: 'Hiragino Mincho ProN, Georgia, serif', background: 'var(--cream)', color: 'var(--text)', minHeight: '100vh' }}>
+    <div style={{
+      fontFamily: 'Hiragino Mincho ProN, Georgia, serif',
+      background: '#F1EBDD',
+      color: '#343D32',
+      minHeight: '100vh',
+      ['--lp-dark' as string]: '#343D32',
+      ['--lp-cream' as string]: '#F1EBDD',
+      ['--lp-cream2' as string]: '#EAE2CE',
+      ['--lp-gold' as string]: '#AD9663',
+      ['--lp-border' as string]: 'rgba(52,61,50,0.18)',
+      ['--lp-sub' as string]: 'rgba(52,61,50,0.65)',
+      ['--lp-muted' as string]: 'rgba(52,61,50,0.4)',
+    }}>
 
       {/* HERO */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '90vh' }} className="hero-grid">
-        <div style={{ position: 'relative', overflow: 'hidden', minHeight: 300, background: '#1a1714' }} className="hero-img-mobile">
+        <div style={{ position: 'relative', overflow: 'hidden', minHeight: 300, background: '#343D32' }} className="hero-img-mobile">
           <Image
-            src="/images/peony.jpg"
-            alt="アートの贈り物"
+            src="/images/kiku.jpg"
+            alt="菊"
             fill
             style={{ objectFit: 'cover' }}
             priority
@@ -42,10 +54,10 @@ export default function LPPage() {
         <div style={{
           padding: '80px 56px',
           display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          borderLeft: '0.5px solid var(--border)'
+          borderLeft: '0.5px solid var(--lp-border)'
         }} className="hero-text-mobile">
           <p style={{
-            fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+            fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
             fontFamily: 'Hiragino Sans, sans-serif', marginBottom: 24
           }}>NULLEA — WATERCOLOR ART</p>
           <h1 style={{
@@ -54,10 +66,10 @@ export default function LPPage() {
           }}>
             アートの贈り物。
           </h1>
-          <div style={{ width: 32, height: 1, background: 'var(--gold)', margin: '16px 0 20px' }} />
+          <div style={{ width: 32, height: 1, background: 'var(--lp-gold)', margin: '16px 0 20px' }} />
           <p style={{
             fontFamily: 'Hiragino Sans, sans-serif', fontSize: 14,
-            color: 'var(--text-sub)', lineHeight: 2, marginBottom: 40, maxWidth: 360
+            color: 'var(--lp-sub)', lineHeight: 2, marginBottom: 40, maxWidth: 360
           }}>
             縁起の良いアートで日常に彩りを。<br />
             玄関やオフィスに飾るだけで、<br />
@@ -82,8 +94,8 @@ export default function LPPage() {
               href="#contact-form"
               style={{
                 display: 'block', textAlign: 'center',
-                padding: '14px 24px', border: '0.5px solid var(--border)',
-                color: 'var(--text)', textDecoration: 'none',
+                padding: '14px 24px', border: '0.5px solid var(--lp-border)',
+                color: '#343D32', textDecoration: 'none',
                 fontSize: 13, fontFamily: 'Hiragino Sans, sans-serif',
                 letterSpacing: '0.08em'
               }}
@@ -97,7 +109,7 @@ export default function LPPage() {
       {/* 3 FEATURES */}
       <section style={{ padding: '80px 48px', maxWidth: 1100, margin: '0 auto' }} className="section-pad-mobile">
         <p style={{
-          fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+          fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
           fontFamily: 'Hiragino Sans, sans-serif', textAlign: 'center', marginBottom: 48
         }}>FEATURES</p>
         <div style={{
@@ -120,9 +132,9 @@ export default function LPPage() {
               desc: '記念の花・思い出の景色などをオーダーメイドで制作。あなただけの特別な一枚を、透明水彩の柔らかな表現で残します。',
             },
           ].map((f) => (
-            <div key={f.num} style={{ borderTop: '0.5px solid var(--border)', paddingTop: 24 }}>
+            <div key={f.num} style={{ borderTop: '0.5px solid var(--lp-border)', paddingTop: 24 }}>
               <p style={{
-                fontSize: 11, color: 'var(--gold)', fontFamily: 'Hiragino Sans, sans-serif',
+                fontSize: 11, color: 'var(--lp-gold)', fontFamily: 'Hiragino Sans, sans-serif',
                 letterSpacing: '0.16em', marginBottom: 12
               }}>{f.num}</p>
               <h3 style={{
@@ -131,7 +143,7 @@ export default function LPPage() {
               }}>{f.title}</h3>
               <p style={{
                 fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13,
-                color: 'var(--text-sub)', lineHeight: 1.9
+                color: 'var(--lp-sub)', lineHeight: 1.9
               }}>{f.desc}</p>
             </div>
           ))}
@@ -139,10 +151,10 @@ export default function LPPage() {
       </section>
 
       {/* WORKS PREVIEW */}
-      <section style={{ background: 'var(--cream-2)', padding: '80px 48px' }} className="section-pad-mobile">
+      <section style={{ background: 'var(--lp-cream2)', padding: '80px 48px' }} className="section-pad-mobile">
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <p style={{
-            fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+            fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
             fontFamily: 'Hiragino Sans, sans-serif', textAlign: 'center', marginBottom: 40
           }}>WORKS</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
@@ -152,7 +164,7 @@ export default function LPPage() {
               { src: '/images/orchid.jpg', label: '青い胡蝶蘭', price: '¥30,000', sold: false },
               { src: '/images/plum.jpg', label: '紅梅', price: null, sold: true },
             ].map((w) => (
-              <div key={w.src} style={{ position: 'relative', aspectRatio: '3/4', background: '#1a1714', overflow: 'hidden' }}>
+              <div key={w.src} style={{ position: 'relative', aspectRatio: '3/4', background: '#343D32', overflow: 'hidden' }}>
                 <Image src={w.src} alt={w.label} fill style={{ objectFit: 'cover' }} />
                 {w.sold && (
                   <div style={{
@@ -169,7 +181,7 @@ export default function LPPage() {
                 }}>
                   <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontFamily: 'Hiragino Sans, sans-serif' }}>{w.label}</p>
                   {w.price && !w.sold && (
-                    <p style={{ fontSize: 11, color: 'var(--gold)', fontFamily: 'Hiragino Sans, sans-serif', marginTop: 2 }}>{w.price}</p>
+                    <p style={{ fontSize: 11, color: 'var(--lp-gold)', fontFamily: 'Hiragino Sans, sans-serif', marginTop: 2 }}>{w.price}</p>
                   )}
                 </div>
               </div>
@@ -178,8 +190,8 @@ export default function LPPage() {
           <div style={{ textAlign: 'center', marginTop: 32 }}>
             <Link href="/gallery" style={{
               fontFamily: 'Hiragino Sans, sans-serif', fontSize: 11, letterSpacing: '0.14em',
-              padding: '11px 28px', border: '0.5px solid var(--border)',
-              color: 'var(--text)', textDecoration: 'none', display: 'inline-block'
+              padding: '11px 28px', border: '0.5px solid var(--lp-border)',
+              color: '#343D32', textDecoration: 'none', display: 'inline-block'
             }}>作品一覧を見る</Link>
           </div>
         </div>
@@ -188,7 +200,7 @@ export default function LPPage() {
       {/* PRICING */}
       <section style={{ padding: '80px 48px', maxWidth: 1100, margin: '0 auto' }} className="section-pad-mobile">
         <p style={{
-          fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+          fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
           fontFamily: 'Hiragino Sans, sans-serif', textAlign: 'center', marginBottom: 48
         }}>PRICING</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24 }}>
@@ -207,22 +219,22 @@ export default function LPPage() {
             },
           ].map((p) => (
             <div key={p.label} style={{
-              border: '0.5px solid var(--border)', padding: '32px 28px',
-              background: 'var(--cream)'
+              border: '0.5px solid var(--lp-border)', padding: '32px 28px',
+              background: 'var(--lp-cream)'
             }}>
               <p style={{
-                fontSize: 10, letterSpacing: '0.14em', color: 'var(--gold)',
+                fontSize: 10, letterSpacing: '0.14em', color: 'var(--lp-gold)',
                 fontFamily: 'Hiragino Sans, sans-serif', marginBottom: 12
               }}>{p.label.toUpperCase()}</p>
               <h3 style={{ fontSize: 16, fontWeight: 400, marginBottom: 4 }}>{p.label}</h3>
               <p style={{
                 fontFamily: 'Hiragino Sans, sans-serif', fontSize: 12,
-                color: 'var(--text-sub)', marginBottom: 16
+                color: 'var(--lp-sub)', marginBottom: 16
               }}>{p.size}</p>
-              <div style={{ height: '0.5px', background: 'var(--border)', margin: '16px 0' }} />
-              <p style={{ fontSize: 22, color: 'var(--text)', marginBottom: 4 }}>{p.price}</p>
+              <div style={{ height: '0.5px', background: 'var(--lp-border)', margin: '16px 0' }} />
+              <p style={{ fontSize: 22, color: '#343D32', marginBottom: 4 }}>{p.price}</p>
               <p style={{
-                fontFamily: 'Hiragino Sans, sans-serif', fontSize: 11, color: 'var(--gold)'
+                fontFamily: 'Hiragino Sans, sans-serif', fontSize: 11, color: 'var(--lp-gold)'
               }}>{p.note}</p>
             </div>
           ))}
@@ -230,14 +242,14 @@ export default function LPPage() {
       </section>
 
       {/* PROFILE */}
-      <section style={{ background: 'var(--dark)', padding: '80px 48px', color: 'var(--cream)' }} className="section-pad-mobile">
+      <section style={{ background: '#343D32', padding: '80px 48px', color: 'var(--lp-cream)' }} className="section-pad-mobile">
         <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'flex-start', flexWrap: 'wrap' }} className="profile-flex-mobile">
           <div style={{ width: 110, flexShrink: 0, position: 'relative', aspectRatio: '3/4', background: '#2a2520', overflow: 'hidden' }}>
             <Image src="/images/profile.jpg" alt="石嶋久寛" fill style={{ objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1, minWidth: 240 }}>
             <p style={{
-              fontSize: 10, letterSpacing: '0.2em', color: 'var(--gold)',
+              fontSize: 10, letterSpacing: '0.2em', color: 'var(--lp-gold)',
               fontFamily: 'Hiragino Sans, sans-serif', marginBottom: 8
             }}>ARTIST</p>
             <h2 style={{ fontSize: 22, fontWeight: 400, marginBottom: 4 }}>石嶋 久寛</h2>
@@ -259,7 +271,7 @@ export default function LPPage() {
       {/* CTA SECTION */}
       <section style={{ padding: '80px 48px', textAlign: 'center', maxWidth: 700, margin: '0 auto' }} className="section-pad-mobile">
         <p style={{
-          fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+          fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
           fontFamily: 'Hiragino Sans, sans-serif', marginBottom: 24
         }}>CONTACT</p>
         <h2 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 400, marginBottom: 16, lineHeight: 1.5 }}>
@@ -267,7 +279,7 @@ export default function LPPage() {
         </h2>
         <p style={{
           fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13,
-          color: 'var(--text-sub)', lineHeight: 2, marginBottom: 40
+          color: 'var(--lp-sub)', lineHeight: 2, marginBottom: 40
         }}>
           贈り先のイメージや、飾る場所のご要望など、<br />
           どんな些細なことでもお気軽にどうぞ。
@@ -288,15 +300,15 @@ export default function LPPage() {
             Messengerで気軽に相談する
           </a>
           <p style={{
-            fontSize: 11, color: 'var(--text-muted)', fontFamily: 'Hiragino Sans, sans-serif',
+            fontSize: 11, color: 'var(--lp-muted)', fontFamily: 'Hiragino Sans, sans-serif',
             letterSpacing: '0.1em'
           }}>— または —</p>
           <a
             href="#contact-form"
             style={{
               display: 'block', textAlign: 'center',
-              padding: '16px 24px', border: '0.5px solid var(--border)',
-              color: 'var(--text)', textDecoration: 'none',
+              padding: '16px 24px', border: '0.5px solid var(--lp-border)',
+              color: '#343D32', textDecoration: 'none',
               fontSize: 13, fontFamily: 'Hiragino Sans, sans-serif',
               letterSpacing: '0.08em'
             }}
@@ -307,16 +319,16 @@ export default function LPPage() {
       </section>
 
       {/* CONTACT FORM */}
-      <section id="contact-form" style={{ background: 'var(--cream-2)', padding: '80px 48px' }} className="section-pad-mobile">
+      <section id="contact-form" style={{ background: 'var(--lp-cream2)', padding: '80px 48px' }} className="section-pad-mobile">
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <p style={{
-            fontSize: 10, letterSpacing: '0.22em', color: 'var(--gold)',
+            fontSize: 10, letterSpacing: '0.22em', color: 'var(--lp-gold)',
             fontFamily: 'Hiragino Sans, sans-serif', textAlign: 'center', marginBottom: 40
           }}>INQUIRY FORM</p>
           {sent ? (
             <div style={{ textAlign: 'center', padding: '48px 0' }}>
               <p style={{ fontSize: 16, marginBottom: 12 }}>お問い合わせありがとうございます。</p>
-              <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13, color: 'var(--text-sub)', lineHeight: 2 }}>
+              <p style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13, color: 'var(--lp-sub)', lineHeight: 2 }}>
                 内容を確認のうえ、2〜3営業日以内にご返信いたします。
               </p>
             </div>
@@ -329,7 +341,7 @@ export default function LPPage() {
                 <div key={field.id}>
                   <label htmlFor={field.id} style={{
                     display: 'block', fontFamily: 'Hiragino Sans, sans-serif',
-                    fontSize: 11, color: 'var(--text-sub)', letterSpacing: '0.1em',
+                    fontSize: 11, color: 'var(--lp-sub)', letterSpacing: '0.1em',
                     marginBottom: 6
                   }}>{field.label}</label>
                   <input
@@ -341,9 +353,9 @@ export default function LPPage() {
                     onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
                     style={{
                       width: '100%', padding: '12px 14px', boxSizing: 'border-box',
-                      border: '0.5px solid var(--border)', background: 'var(--cream)',
+                      border: '0.5px solid var(--lp-border)', background: 'var(--lp-cream)',
                       fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13,
-                      color: 'var(--text)', outline: 'none'
+                      color: '#343D32', outline: 'none'
                     }}
                   />
                 </div>
@@ -351,7 +363,7 @@ export default function LPPage() {
               <div>
                 <label htmlFor="message" style={{
                   display: 'block', fontFamily: 'Hiragino Sans, sans-serif',
-                  fontSize: 11, color: 'var(--text-sub)', letterSpacing: '0.1em', marginBottom: 6
+                  fontSize: 11, color: 'var(--lp-sub)', letterSpacing: '0.1em', marginBottom: 6
                 }}>お問い合わせ内容</label>
                 <textarea
                   id="message"
@@ -362,9 +374,9 @@ export default function LPPage() {
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   style={{
                     width: '100%', padding: '12px 14px', boxSizing: 'border-box',
-                    border: '0.5px solid var(--border)', background: 'var(--cream)',
+                    border: '0.5px solid var(--lp-border)', background: 'var(--lp-cream)',
                     fontFamily: 'Hiragino Sans, sans-serif', fontSize: 13,
-                    color: 'var(--text)', outline: 'none', resize: 'vertical'
+                    color: '#343D32', outline: 'none', resize: 'vertical'
                   }}
                 />
               </div>
@@ -372,7 +384,7 @@ export default function LPPage() {
                 type="submit"
                 disabled={sending}
                 style={{
-                  padding: '14px 32px', background: 'var(--dark)', color: 'var(--cream)',
+                  padding: '14px 32px', background: '#343D32', color: 'var(--lp-cream)',
                   border: 'none', cursor: sending ? 'not-allowed' : 'pointer',
                   fontFamily: 'Hiragino Sans, sans-serif', fontSize: 12,
                   letterSpacing: '0.14em', opacity: sending ? 0.6 : 1
@@ -387,16 +399,16 @@ export default function LPPage() {
 
       {/* FOOTER */}
       <footer style={{
-        borderTop: '0.5px solid var(--border)', padding: '24px 48px',
+        borderTop: '0.5px solid var(--lp-border)', padding: '24px 48px',
         textAlign: 'center'
       }}>
         <p style={{
           fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10,
-          color: 'var(--text-muted)', letterSpacing: '0.14em'
+          color: 'var(--lp-muted)', letterSpacing: '0.14em'
         }}>© 2025 NULLEA / Hisa Ishijima</p>
         <div style={{ marginTop: 12, display: 'flex', gap: 20, justifyContent: 'center' }}>
-          <Link href="/" style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10, color: 'var(--text-muted)', textDecoration: 'none', letterSpacing: '0.1em' }}>サイトトップへ</Link>
-          <Link href="/gallery" style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10, color: 'var(--text-muted)', textDecoration: 'none', letterSpacing: '0.1em' }}>作品一覧</Link>
+          <Link href="/" style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10, color: 'var(--lp-muted)', textDecoration: 'none', letterSpacing: '0.1em' }}>サイトトップへ</Link>
+          <Link href="/gallery" style={{ fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10, color: 'var(--lp-muted)', textDecoration: 'none', letterSpacing: '0.1em' }}>作品一覧</Link>
         </div>
       </footer>
     </div>
