@@ -252,7 +252,7 @@ export default function LPPage() {
               fontSize: 10, letterSpacing: '0.2em', color: 'var(--lp-gold)',
               fontFamily: 'Hiragino Sans, sans-serif', marginBottom: 8
             }}>ARTIST</p>
-            <h2 style={{ fontSize: 22, fontWeight: 400, marginBottom: 4 }}>石嶋 久寛</h2>
+            <h2 style={{ fontSize: 22, fontWeight: 400, marginBottom: 4 }}>ひさのり</h2>
             <p style={{
               fontFamily: 'Hiragino Sans, sans-serif', fontSize: 10,
               color: 'rgba(255,255,255,0.4)', letterSpacing: '0.14em', marginBottom: 20
